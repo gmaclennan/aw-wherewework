@@ -17,6 +17,7 @@
         fill-opacity: .2;
         stroke: #fff;
         stroke-width: 1.5px;
+        cursor: pointer;
       }
 
       path:hover {
@@ -53,6 +54,10 @@
             .attr('class', 'd3-vec'),
             svg = div.append('svg'),
             g = svg.append("g");
+            
+        var click = function (d) {
+            window.location = "http://amazonwatch.org/work/" + d.properties.name;
+        }
 
         f.parent = div.node();
 
@@ -79,7 +84,8 @@
             console.log("now I've done bounds");
             feature = g.selectAll("path")
                 .data(collection.features)
-                .enter().append("path");
+                .enter().append("path")
+                .on("click", click);
             return f;
         };
 
